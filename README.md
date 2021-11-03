@@ -15,8 +15,8 @@ If you might want to officially register your package, then review the [recommen
 julia -e 'using Pkg; Pkg.generate("ExamplePkg")' 
 ```
 2. Change into directory `cd ExamplePkg`, copy any other files you'd like to be in your package into the directory from the beginning and use git to add and commit them to your repository.  Those might include:
-   - a [LICENSE](https://github.com/PsuAstro528/lab5-start/blob/master/LICENSE) so others know how you'd like your code to be used
-   - [.gitignore](https://github.com/PsuAstro528/lab5-start/blob/master/.gitignore) if there are some files that you don't want added to your git repository
+   - a [LICENSE](https://github.com/PsuAstro528/lab9-start/blob/master/LICENSE) so others know how you'd like your code to be used
+   - [.gitignore](https://github.com/PsuAstro528/lab9-start/blob/master/.gitignore) if there are some files that you don't want added to your git repository
 ```sh
 cp PATH/LICENSE .
 cp PATH/.gitignore .
@@ -161,7 +161,7 @@ INSERT URL
 
 12. (Very optional) add other nice features to your project.  For example:
    - If you want code to be run whenever your package in installed (e.g., downloading large datafiles that aren't stored on github), you can put that code in [`deps/build.jl`](https://julialang.github.io/Pkg.jl/v1/creating-packages/#Adding-a-build-step-to-the-package.-1).  
-   - If you want to generate webpages of documentation from your docstrings, you could add a [`docs` directory](https://github.com/JuliaLang/Example.jl/tree/master/docs) with the files necessary for Documenter.jl](https://juliadocs.github.io/Documenter.jl/latest/).
+   - If you want to generate webpages of documentation from your docstrings, you could add a [`docs` directory](https://github.com/JuliaLang/Example.jl/tree/master/docs) with the files necessary for [Documenter.jl](https://juliadocs.github.io/Documenter.jl/latest/).
    - If you want to make it easy for people to install everything they need (particularly if your code combines multiple languages), then consider providing a [docker-compose.yml](https://github.com/PsuAstro528/lab5-start-Spring2019/blob/master/docker-compose.yml)
 
 
