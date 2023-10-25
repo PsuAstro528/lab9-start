@@ -1,0 +1,9 @@
+name = "ExamplePkg"
+uuid = "210e419a-0a9f-472d-927f-6eff903495ba"
+authors = ["Eric Ford <ebf11@psu.edu>"]
+version = "0.1.0"
+
+[deps]
+PlutoLinks = "0ff47ea0-7a50-410d-8455-4348d5de0420"
+PlutoTest = "cb4044da-4d16-4ffa-a6a3-8cad7f73ebdc"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
