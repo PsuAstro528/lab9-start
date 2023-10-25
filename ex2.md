@@ -27,7 +27,7 @@ INSERT RESPONCE
 
 INSERT RESPONCE
 
-2e.  What could I change, so as to make this course more effective for future graduate students?
+2e.  What could the instructor change, so as to make this course more effective for future graduate students?
 
 INSERT RESPONCE
 

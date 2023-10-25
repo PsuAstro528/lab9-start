@@ -1,5 +1,9 @@
 module ExamplePkg
 
-greet() = print("Hello World!")
+hello() = "Hello World!"
+
+goodbye() = "Goodbye World."
+
+export hello
 
 end # module

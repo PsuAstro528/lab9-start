@@ -126,7 +126,7 @@ git push
 
    - Optionally, add a [.github/workflows/ExportPluto.yaml](https://github.com/PsuAstro528/lab3-start/blob/main/.github/workflows/ExportPluto.yaml) file, if you've like GitHub to be able to build html versions of your Pluto notebooks and deploy them via GitHub Pages.  
 
-   - Note that, I had to disable GitHub Actions for most repositories in the PsuAstro528 GitHub organization, so that we didn't run out of compute time.  If you create a repository that's not part of the PsuAstro528 organization, then you'll have control of whether/which repositories can automatically trigger workflows via GitHub Actions.
+   - Note that, I might have to disable GitHub Actions for most repositories in the PsuAstro528 GitHub organization (if some students' projects are using significant resources), so that we didn't run exceed our allocation on GitHub.  In that case, your automated testing and notebook building won't happen.  If you create a repository that's not part of the PsuAstro528 organization, then you'll have control of whether/which repositories can automatically trigger workflows via GitHub Actions.
 
 
    - Add & commit your changes and push to GitHub.
@@ -134,7 +134,7 @@ git push
 8.  (Optional) Add/commit/push any other files that will help potential users make use of your package more easily.  This isn't important for the lab exercise, but could be important if you wanted to share your project.  For example,
 
    - README.md if you'd like to provide users an overview of how to install, use and cite the code in your project.  Or to provide benchmarking results showing the relative performance of your code in serial and parallel.  
-   - For more examples of features people like to add to packages, see the [PkgTemplates.jl](https://github.com/invenia/PkgTemplates.jl) package that makes it easier to build packages with a consistent set of features (e.g., code coverage testing, badges, logos, etc.)
+   - For more examples of features people like to add to packages, see the [PkgTemplates.jl](https://github.com/JuliaCI/PkgTemplates.jl) package that makes it easier to build packages with a consistent set of features (e.g., code coverage testing, badges, logos, etc.)
 
 9.  Test that others can add your (unregistered package).
    - Exit Julia and change into a new directory.
@@ -152,17 +152,28 @@ julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/GITHUBID/Exampl
 using Pkg
 Pkg.develop(PackageSpec(url="git@github.com:GITHUBID/ExamplePkg.jl.git"))
 ```
-This will cause Julia to download the full git repository for this package into the dev directory (by default `~/.julia/dev/ExamplePkg`, but this is may be overwridden by your JULIA_DEPOT_PATH and/or JULIA_PKG_DEVDIR environment variables).  Now, you can change into that directory to pull, push, commit and use all other features of git.  By comitting and pushing your code, you'll be updating the package on github.  
+This will cause Julia to download the full git repository for this package into the dev directory (by default `~/.julia/dev/ExamplePkg`, but this is may be overwridden by your JULIA_DEPOT_PATH and/or JULIA_PKG_DEVDIR environment variables; On Roar Collab, we created a symlink to /storage/work/USERID/.julia).  Now, you can change into that directory to pull, push, commit and use all other features of git.  By comitting and pushing your code, you'll be updating the package on github.  
 
 
 11. Add a link to the github Repo your new package below.
 
-1a.  INSERT URL TO YOU PACKAGE
+1a.  **TODO:**  INSERT URL TO YOU PACKAGE HERE
 
-12. (Very optional) add other nice features to your project.  For example:
-   - If you want code to be run whenever your package in installed (e.g., downloading large datafiles that aren't stored on github), you can put that code in [`deps/build.jl`](https://julialang.github.io/Pkg.jl/v1/creating-packages/#Adding-a-build-step-to-the-package.-1).  
+12. (Very optional) Consider adding other nice features to your project.  For example:
+   - If you want code to be run whenever your package in installed (e.g., downloading large datafiles that aren't stored on github), you can put that code in [`deps/build.jl`](https://pkgdocs.julialang.org/v1/creating-packages/#Adding-a-build-step-to-the-package).
    - If you want to generate webpages of documentation from your docstrings, you could add a [`docs` directory](https://github.com/JuliaLang/Example.jl/tree/master/docs) with the files necessary for [Documenter.jl](https://juliadocs.github.io/Documenter.jl/latest/).
-   - If you want to make it easy for people to install everything they need (particularly if your code combines multiple languages), then consider providing a [docker-compose.yml](https://github.com/PsuAstro528/lab5-start-Spring2019/blob/master/docker-compose.yml)
+   - If you want to make it easy for people to install everything they need (particularly if your code combines multiple languages), then consider providing a docker-compose.yml file like
+```
+version: '3.7'
+services:
+  julia:
+    image: julia:latest
+    volumes:
+      - .:/home/jovyan/work
+    ports:
+      - 8888:8888
+```
 
 
-13. (Very optional) Register your package.  If you're interested in sharing your project code with others, then I'd definitely suggest turning it into a Julia package.  People can add your package by providing the url.  If you'd like you could _register_ your package into the Julia general registry, so that others can easily install it by name, rather than by url.  Instructions to request your package be registered are at [Registrator.jl](https://github.com/JuliaRegistries/Registrator.jl) and discussed in class on Monday.
+13. (Very optional) Register your package.  If you publish your package in a public GitHub repository, then people can add your package, provided that they know the url.  I're interested in making it even easier for other people to use your package, then you could register your package in the General Julia Registry.  Then others can easily install it by name, rather than by url.  Instructions to request your package be registered are at [Registrator.jl](https://github.com/JuliaRegistries/Registrator.jl).  We can discuss this in a future class if people express interest.
+
