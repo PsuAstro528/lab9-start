@@ -108,12 +108,12 @@ end;
 ```
 Since your tests will make use of the Test package, add that to the list of dependencies.  Then
 ```sh
-julia -e 'using Pkg; Pkg.activate("."); Pkg.add("Test")'
+julia --project -e 'using Pkg; Pkg.add("Test")'
 ```
 
    - Try running your tests using the package manager.  
 ```julia
-julia -e 'using Pkg; Pkg.actviate("."); Pkg.test("ExamplePkg")'
+julia --project -e 'using Pkg; Pkg.test("ExamplePkg")'
 ```
 If you encounter any difficulties, then fix them.  Once your initial tests are ready, add/commit/push them.
 ```
@@ -136,14 +136,14 @@ git push
    - README.md if you'd like to provide users an overview of how to install, use and cite the code in your project.  Or to provide benchmarking results showing the relative performance of your code in serial and parallel.  
    - For more examples of features people like to add to packages, see the [PkgTemplates.jl](https://github.com/JuliaCI/PkgTemplates.jl) package that makes it easier to build packages with a consistent set of features (e.g., code coverage testing, badges, logos, etc.)
 
-9.  Test that others can add your (unregistered package).
+9.  Test that you and others can add your (unregistered package).
    - Exit Julia and change into a new directory.
    - Try installing your package from github (remembering to replace GITHUBID)
 ```sh
 julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/GITHUBID/ExamplePkg.jl"))'
 
 ```
-   - Now try loading your package (e.g., `using ExamplePkg`)
+   - Now try loading your package (e.g., `using ExamplePkg`).  The lab's starter repo includes demo scripts for how to access your package's functionality from a Pluto notebook, Jupyter notebook or a simple script.
    - Run your tests (e.g., `using Pkg; Pkg.test("ExamplePkg")` )
    - Check your docstings (e.g.,  `?ExamplePkg`)
 
