@@ -1,0 +1,61 @@
+configfile: "config.yaml"
+fits_dir = config["fits_dir"]
+toml_dir = config["toml_dir"]
+out_dir = config["out_dir"]
+
+DATETIMES, = glob_wildcards(fits_dir + "/neidL2_{datetime}.fits")
+
+rule all:
+   input:
+      "0_instantiated",
+      fits_dir + "/0_download_complete",
+      expand(toml_dir + "/neidL2_{datetime}.toml", datetime=DATETIMES),
+      out_dir + "/output.csv"
+
+rule instantiate:
+   input: 
+      "Project.toml"
+   output: 
+      "0_instantiated"
+   shell:
+      "julia --project -e 'import Pkg; Pkg.instantiate()'; touch {output}"
+
+rule download:
+   params: 
+      dl_script = config["download_script"],
+      inputdir = fits_dir 
+   output: 
+      fits_dir + "/0_download_complete" 
+   shell:
+      "cd {params.inputdir}; source {params.dl_script}; cd - ; touch {output}"
+
+rule make_csv:
+   input:
+      fits = fits_dir + "/neidL2_{datetime}.fits",
+      check = "0_instantiated"
+   output:
+      out_dir + "/neidL2_{datetime}.csv"
+   shell:
+      "julia --project preprocess.jl {input.fits} {output}"
+
+rule make_toml:
+   params: 
+      p1 = config["preprocess_param"]
+   input:
+      fits = fits_dir + "/neidL2_{datetime}.fits",
+      check = "0_instantiated"
+   output:
+      toml_dir + "/neidL2_{datetime}.toml"
+   shell:
+      "julia --project preprocess.jl {input.fits} {output} --opt={params.p1}"
+
+rule post_process:
+   params: 
+      indir = toml_dir
+   input:
+      expand(toml_dir + "/neidL2_{datetime}.toml", datetime=DATETIMES)
+   output:
+      out_dir + "/output.csv"
+   shell:
+      "julia --project postprocess.jl {params.indir} {output}"
+

@@ -1,35 +1,127 @@
 # Astro 528 Lab 9
-## Exercise 2:  Reflect on Goals for Semester
+## Exercise 2:  Using a workflow management system
 
-Goals:  
-- Appreciate how much you've learned and what good habits you've developed during the semester.
-- Identify goals which you hope to continue working beyond this semester.
-- Develop a plan for building skills that you wish to develop.
+Goals:
+- Use a workflow management system
 
-Review your personal goals for the class (see your Lab 1, Ex 3).  
+In this exercise, you will inspect three different [Snakemake](https://snakemake.readthedocs.io/en/stable/) scripts.
 
-2a. Which goals were you successful at making progress towards?
+- Initialize conda
+```shell
+conda init bash
+```
+Start a new terminal window for future commands.
 
-INSERT RESPONCE
+-  Install snakemake (minimal version)
+```shell
+conda activate base
+mamba create -c bioconda -c conda-forge -n snakemake snakemake-minimal
+```
 
+-  Activate the conda environtment for snakemake
+```shell
+conda activate snakemake
+```
 
-2b. Are there some goals that you would change or remove, based on what you've learned during the course?
-
-INSERT RESPONCE
-
-
-2c. Are there some goals that you would like to continue working towards beyond this semester?
-
-INSERT RESPONCE
-
-
-2d.  What can you do, so as to increase the chances that you'll develop those skills/habits while a graduate student?
-
-INSERT RESPONCE
-
-2e.  What could the instructor change, so as to make this course more effective for future graduate students?
+1a.  Change into directory for snakemake_ex1 and inspect its Snakemake file.
+What do you predict will happen when you run Snakemake? 
 
 INSERT RESPONCE
 
 
-Remember to commit often and push your repository to GitHub when you're done.
+1b.  Run snakemake.
+```shell
+snakemake -c1
+```
+How did the files created compare to your prediction?
+
+INSERT RESPONCE
+
+
+1c.  Delete one of the toml files.  E.g., `rm summary_mu=0_sigma=1.toml`.  
+What do you predict will happen when you rerun Snakemake?  
+
+INSERT RESPONCE
+
+
+1d.  Run snakemake again.
+How did the resulting actions compare to your prediction?
+
+INSERT RESPONCE
+
+
+1e.  Delete one of the csv files.  E.g., `rm summary_mu=0_sigma=1.csv`.  
+What do you predict will happen when you rerun Snakemake?  
+
+INSERT RESPONCE
+
+
+1f.  Run snakemake again.
+How did the resulting actions compare to your prediction?
+
+INSERT RESPONCE
+
+
+
+
+2a.  Change into directory for snakemake_ex2 and inspect its Snakemake file.
+What do you predict will happen when you run Snakemake?
+
+INSERT RESPONCE
+
+2b.  Run snakemake.
+```shell
+snakemake -c1
+```
+How did the files created compare to your prediction?
+INSERT RESPONCE
+
+2c.  Delete one of the toml files E.g., `rm neidL2_20231014T150537.toml`
+What do you predict will happen when you rerun Snakemake?  
+
+INSERT RESPONCE
+
+
+2d.  Run snakemake again.
+
+INSERT RESPONCE
+
+
+2e.  Delete one of the fits files E.g., `rm neidL2_20231014T150537.fits`
+What do you predict will happen when you rerun Snakemake?  
+
+INSERT RESPONCE
+
+
+
+
+3a.  Change into directory for snakemake_ex3 and inspect its Snakemake file.
+What do you predict will happen when you run Snakemake?
+
+INSERT RESPONCE
+
+
+3b.  Run snakemake again.
+How did the resulting actions compare to your prediction?
+
+INSERT RESPONCE
+
+
+3c.  Change the value of `preprocess_param` in `config.yaml`..  
+What do you predict will happen when you rerun Snakemake?  
+
+INSERT RESPONCE
+
+
+3d.  Run snakemake again.
+How did the resulting actions compare to your prediction?
+
+INSERT RESPONCE
+
+
+3e.  Edit the Snakemake file so that snakemake will generate a csv file for each fits file (e.g., neidL2_20231014T150537.csv).
+Try running snakemake with your new script.  If you get an error, try editting your Snakemake file to fix it (just a few times is fine).   
+
+Commit and push your changes to the ex1.md, ex2.md, ex3.md, snakemake_ex2/config.yaml and snakemake_ex3/Snakefile.
+
+
