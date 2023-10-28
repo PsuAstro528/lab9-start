@@ -1,0 +1,49 @@
+DATETIMES, = glob_wildcards("neidL2_{datetime}.fits")
+
+rule all:
+   input:
+      "0_instantiated",
+      "0_download_complete",
+      expand("neidL2_{datetime}.toml", datetime=DATETIMES),
+      "output.csv"
+
+rule instantiate:
+   input: 
+      "Project.toml"
+   output: 
+      "0_instantiated"
+   shell:
+      "julia --project -e 'import Pkg; Pkg.instantiate()'; touch {output}"
+
+rule download:
+   output: 
+      "0_download_complete" 
+   shell:
+      "source neid_download_files_2023_10_14.sh; touch {output}"
+
+rule make_csv:
+   input:
+      fits = "neidL2_{datetime}.fits",
+      check = "0_instantiated"
+   output:
+      "neidL2_{datetime}.csv"
+   shell:
+      "julia --project preprocess.jl {input.fits} {output}"
+
+rule make_toml:
+   input:
+      fits = "neidL2_{datetime}.fits",
+      check = "0_instantiated"
+   output:
+      "neidL2_{datetime}.toml"
+   shell:
+      "julia --project preprocess.jl {input.fits} {output} "
+
+rule post_process:
+   input:
+      expand("neidL2_{datetime}.toml", datetime=DATETIMES)
+   output:
+      "output.csv"
+   shell:
+      "julia --project postprocess.jl . {output}"
+

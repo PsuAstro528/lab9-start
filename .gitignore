@@ -5,3 +5,16 @@ deps/deps.jl
 Manifest.toml
 data
 *.prof
+
+snakemake_ex?/.snakemake
+snakemake_ex?/neid_cookie.txt
+snakemake_ex?/*.fits
+snakemake_ex?/0_*
+snakemake_ex?/neidL2*.toml
+snakemake_ex?/output.csv
+
+snakemake_ex?/input/neid_cookie.txt
+snakemake_ex?/input/*.fits
+snakemake_ex?/output/*.toml
+snakemake_ex?/output/output.csv
+snakemake_ex?/input/0_*
