@@ -6,6 +6,9 @@ Manifest.toml
 data
 *.prof
 
+snakemake_ex?/draws_*.csv
+snakemake_ex?/summary_*.toml
+
 snakemake_ex?/.snakemake
 snakemake_ex?/neid_cookie.txt
 snakemake_ex?/*.fits
