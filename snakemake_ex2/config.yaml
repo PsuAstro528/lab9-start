@@ -1,0 +1,6 @@
+fits_dir: "input"
+toml_dir: "output"
+out_dir: "output"
+download_script: "neid_download_files_2023_10_14.sh"
+preprocess_param: 1.0
+
