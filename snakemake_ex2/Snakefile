@@ -8,8 +8,6 @@ rule all:
       "output.csv"
 
 rule instantiate:
-   input: 
-      "Project.toml"
    output: 
       "0_instantiated"
    shell:
@@ -24,7 +22,8 @@ rule download:
 rule make_toml:
    input:
       fits = "neidL2_{datetime}.fits",
-      check = "0_instantiated"
+      check1 = "0_instantiated",
+      check2 = "0_download_complete" 
    output:
       "neidL2_{datetime}.toml"
    shell:
@@ -32,7 +31,9 @@ rule make_toml:
 
 rule post_process:
    input:
-      expand("neidL2_{datetime}.toml", datetime=DATETIMES)
+      check1 = "0_instantiated",
+      check2 = "0_download_complete", 
+      input_fn = expand("neidL2_{datetime}.toml", datetime=DATETIMES)
    output:
       "output.csv"
    shell:

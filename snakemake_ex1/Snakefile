@@ -6,8 +6,6 @@ rule all:
       expand("summary_mu={mean}_sigma={sigma}.toml", mean=MEANS, sigma=SIGMAS)
 
 rule instantiate:
-   input: 
-      "Project.toml"
    output: 
       "0_instantiated"
    shell:

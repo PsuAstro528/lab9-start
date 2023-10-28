@@ -1,6 +1,7 @@
 configfile: "config.yaml"
 fits_dir = config["fits_dir"]
 toml_dir = config["toml_dir"]
+csv_dir = config["csv_dir"]
 out_dir = config["out_dir"]
 
 DATETIMES, = glob_wildcards(fits_dir + "/neidL2_{datetime}.fits")
@@ -13,8 +14,6 @@ rule all:
       out_dir + "/output.csv"
 
 rule instantiate:
-   input: 
-      "Project.toml"
    output: 
       "0_instantiated"
    shell:
@@ -32,9 +31,10 @@ rule download:
 rule make_csv:
    input:
       fits = fits_dir + "/neidL2_{datetime}.fits",
-      check = "0_instantiated"
+      check1 = "0_instantiated",
+      check2 = fits_dir + "/0_download_complete" 
    output:
-      out_dir + "/neidL2_{datetime}.csv"
+      csv_dir + "/neidL2_{datetime}.csv"
    shell:
       "julia --project preprocess.jl {input.fits} {output}"
 
@@ -43,7 +43,8 @@ rule make_toml:
       p1 = config["preprocess_param"]
    input:
       fits = fits_dir + "/neidL2_{datetime}.fits",
-      check = "0_instantiated"
+      check1 = "0_instantiated",
+      check2 = fits_dir + "/0_download_complete" 
    output:
       toml_dir + "/neidL2_{datetime}.toml"
    shell:
@@ -53,7 +54,8 @@ rule post_process:
    params: 
       indir = toml_dir
    input:
-      expand(toml_dir + "/neidL2_{datetime}.toml", datetime=DATETIMES)
+      check1 = "0_instantiated",
+      input_fn = expand(toml_dir + "/neidL2_{datetime}.toml", datetime=DATETIMES)
    output:
       out_dir + "/output.csv"
    shell:
