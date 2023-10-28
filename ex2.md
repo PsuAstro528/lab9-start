@@ -69,12 +69,14 @@ What do you predict will happen when you run Snakemake?
 
 INSERT RESPONCE
 
-2b.  Run snakemake.
+
+2b.  Run snakemake with up to four steps running at once.
 ```shell
-snakemake -c1
+snakemake -c 4
 ```
 How did the files created compare to your prediction?
 INSERT RESPONCE
+
 
 2c.  Delete one of the toml files E.g., `rm neidL2_20231014T150537.toml`
 What do you predict will happen when you rerun Snakemake?  
