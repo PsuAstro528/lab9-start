@@ -140,7 +140,7 @@ git push
    - Exit Julia and change into a new directory.
    - Try installing your package from github (remembering to replace GITHUBID)
 ```sh
-julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/GITHUBID/ExamplePkg.jl"))'
+julia -e 'using Pkg; Pkg.add(url="https://github.com/GITHUBID/ExamplePkg.jl")'
 
 ```
    - Now try loading your package (e.g., `using ExamplePkg`).  The lab's starter repo includes demo scripts for how to access your package's functionality from a Pluto notebook, Jupyter notebook or a simple script.
@@ -150,7 +150,7 @@ julia -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/GITHUBID/Exampl
 10.  To continue developing your package, tell the package manager that you want to develop (as opposed to use your package).
 ```julia
 using Pkg
-Pkg.develop(PackageSpec(url="git@github.com:GITHUBID/ExamplePkg.jl.git"))
+Pkg.develop(url="git@github.com:GITHUBID/ExamplePkg.jl.git")
 ```
 This will cause Julia to download the full git repository for this package into the dev directory (by default `~/.julia/dev/ExamplePkg`, but this is may be overwridden by your JULIA_DEPOT_PATH and/or JULIA_PKG_DEVDIR environment variables; On Roar Collab, we created a symlink to /storage/work/USERID/.julia).  Now, you can change into that directory to pull, push, commit and use all other features of git.  By comitting and pushing your code, you'll be updating the package on github.  
 
