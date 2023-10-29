@@ -43,8 +43,8 @@ rule make_toml:
       p1 = config["preprocess_param"]
    input:
       fits = fits_dir + "/neidL2_{datetime}.fits",
-      check1 = "0_instantiated",
-      check2 = fits_dir + "/0_download_complete" 
+      check1 = fits_dir + "/0_download_complete",
+      check2 = "0_instantiated"
    output:
       toml_dir + "/neidL2_{datetime}.toml"
    shell:
