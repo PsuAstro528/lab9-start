@@ -17,11 +17,13 @@ Start a new terminal window for future commands.
 conda activate base
 mamba create -c bioconda -c conda-forge -n snakemake snakemake-minimal
 ```
+The above steps only need to be done once (on Roar Collab).
 
 -  Activate the conda environtment for snakemake
 ```shell
 conda activate snakemake
 ```
+You'll need to repeate this step in each terminal window (when you want to be able to run snakemake).  
 
 1a.  Change into directory for snakemake_ex1 and inspect its Snakemake file.
 What do you predict will happen when you run Snakemake? 
@@ -148,7 +150,7 @@ INSERT RESPONCE
 ```shell
 snakemake --profile=../profile/open --latency-wait=30
 ```
-or
+If you find your job is sitting in the open queue for more than ~10 minutes, then you you could try submitting to our classroom allocation.
 ```shell
 snakemake --profile=../profile/sla --latency-wait=30
 ```
