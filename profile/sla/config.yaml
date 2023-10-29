@@ -1,0 +1,10 @@
+default-resources: 
+   mem_mb_per_cpu: 4096   # in MB
+   nodes: 1               # nodes per job  
+   tasks: 1               # tasks per job
+   cpus_per_task: 1       # cores per job
+   runtime: 15            # in minutes
+cluster: "sbatch --job-name={rule} -A ebf11-fa23 --partition sla-prio --time={resources.runtime} --nodes={resources.nodes} --ntasks={resources.tasks} --cpus-per-task={resources.cpus_per_task} --mem-per-cpu={resources.mem_mb_per_cpu} --export=ALL"
+jobs: 10
+verbose: true
+notemp: true
