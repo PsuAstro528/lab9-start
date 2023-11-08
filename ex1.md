@@ -9,6 +9,7 @@ Organizing code into modules is another good software development habit that you
 
 Instructions for [creating a Julia Package](https://julialang.github.io/Pkg.jl/v1/creating-packages/):
 
+0.  Changed out of the directory with this lab's starter repo (e.g., `cd /storage/work/USERID/`).  This is so that in subsequent steps you will create a new directory that is not inside another git repository (like the lab's starter repository).  
 1.  Use `Pkg.generate("ExamplePkg")` to create a new directory with the bare-bone minimal files for your package (ExamplePkg/Project.toml and ExamplePkg/src/ExamplePkg.jl).  Feel free to pick your own package name.
 If you might want to officially register your package, then review the [recommended conventions for package naming](https://julialang.github.io/Pkg.jl/v1/creating-packages/#Package-naming-guidelines-1) before picking your name.
 ```julia
